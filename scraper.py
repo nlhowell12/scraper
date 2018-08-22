@@ -5,6 +5,7 @@ import sys
 
 
 def create_parser():
+    """Creates an argument parser for this file"""
     parser = argparse.ArgumentParser(
         description='Scrapes a url for urls, emails, and phone numbers'
     )
@@ -13,6 +14,7 @@ def create_parser():
 
 
 def find_urls(url):
+    """Finds all the URLs inside the html of a page"""
     print 'URLS:'
     for url in set(re.findall(
         r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|'
@@ -21,6 +23,7 @@ def find_urls(url):
 
 
 def find_emails(url):
+    """Finds all the email addresses in the html of a page"""
     print 'Emails:'
     for email in set(re.findall(
             r"([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)", url.text)):
@@ -28,6 +31,7 @@ def find_emails(url):
 
 
 def find_phone(url):
+    """Finds all the phone numbers in the html of a page"""
     print 'Phone Numbers'
     for phone in set(re.findall(
         r'1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})'
